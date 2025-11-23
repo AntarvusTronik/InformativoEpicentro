@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba en GitHub Pages</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .card {
+            background: white;
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background: #0080ff;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005fcc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>Mi Página de Prueba</h2>
+        <p id="mensaje">Presiona el botón para ver un mensaje.</p>
+        <button onclick="mostrarMensaje()">Haz clic aquí</button>
+    </div>
+
+    <script>
+        function mostrarMensaje() {
+            document.getElementById("mensaje").textContent = 
+                "¡Hola! Esta página está funcionando correctamente desde GitHub Pages 😄";
+        }
+    </script>
+
+</body>
+</html>
