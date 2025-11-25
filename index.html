@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Noticiero</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome actualizado -->
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Merriweather', serif;
             margin: 0;
             background: #f2f2f2;
             color: #333;
@@ -116,30 +120,16 @@
         }
 
         /* NOTICIA CLICKEABLE */
-        .preview-btn {
-            text-decoration: none;
-            color: inherit;
-            display: block;
+        .news-link {
+            text-decoration: none; /* quita subrayado */
+            color: inherit;        /* mantiene el color original del texto */
+            display: block;        /* importante para que abarque todo el div */
         }
 
-        .preview-btn .news-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .preview-btn:hover .news-card {
-            transform: scale(1.02);
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.25);
-        }
-
-        /* BARRA DE BÚSQUEDA */
-
-        #searchInput {
-            width: 95%;
-            padding: 12px 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 16px;
+        .news-link:hover .news-card {
+            box-shadow: 0 0 15px rgba(0,0,0,0.2); /* efecto al pasar el cursor */
+            transform: translateY(-2px);           /* efecto sutil */
+            transition: all 0.3s ease;
         }
 
         /* DISEÑO DE CATEGORÍAS EN ARTÍCULOS */
@@ -157,10 +147,20 @@
             margin-right: 8px;      /* espacio entre los elementos */
         }
 
+        .news-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 14px;
+            color: #555;
+            margin: 10px 0;
+        }
+
+
         /* DISEÑO DEL TÍTULO EN EL ARTÍCULO */
         .news-card h2 {
             font-family: 'Impact', serif;
-            font-size: 30px;        /* tamaño del título */
+            font-size: 60px;        /* tamaño del título */
             font-weight: normal;       /* negrita */
             color: #222;             /* color oscuro */
             width: 100%;        /* ocupa todo el ancho del contenedor */
@@ -168,6 +168,23 @@
             margin: 10px 0;          /* separación arriba y abajo */
             word-wrap: break-word;   /* rompe palabras largas */
             overflow-wrap: break-word; 
+        }
+
+        /* ESPACIO ENTRE EL TEXTO DEL ARTÍCULO (NO AFECTA A LA DESCRIPCIÓN BAJO LA IMAGEN) */
+        .news-card p:not(.caption) {
+            font-family: 'Merriweather', serif;
+            font-size: 17px;
+            font-weight: normal;
+            line-height: 1.6;
+        }
+
+        /* DESCRIPCIÓN BAJO LA IMAGEN */
+        .caption {
+            font-size: 10px;
+            color: #555;
+            margin: 5px 0 15px 0;
+            text-align: center;
+            font-style: italic;
         }
 
         /* DISEÑO DEL BANNER */
@@ -194,51 +211,6 @@
             max-height: 300px; /* opcional */
             object-fit: cover;
             display: block;
-        }
-
-        /* Contenedor de la imagen para el degradado */
-        .img-container {
-            position: relative;
-            width: 100%;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .img-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Degradado blanco abajo */
-        .img-gradient {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40%;
-            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9));
-            pointer-events: none;
-        }
-
-        /* Texto “Ver más” */
-        .ver-mas {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 6px 12px;
-            background: #000;
-            color: #fff;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            text-align: center;
-            width: fit-content;
-            transition: background 0.3s ease;
-        }
-
-        /* Efecto hover */
-        .news-card:hover .ver-mas {
-            background: #444;
         }
 
         /* DISEÑO DE LOS ULTMAS NOTICIAS EXTERNAS */
@@ -298,6 +270,7 @@
         /* INFORMACIÓN Y CONTACTOS */
 
         .social-footer {
+            font-family: 'Arial', serif;
             text-align: center;
             padding: 20px;
             background-color: #111;   /* Fondo oscuro */
@@ -322,147 +295,54 @@
             transform: scale(1.2);
         }
 
-        /* BANNER PUBLICITARIO */
-
-        .banner-full2 {
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -54.5vw;
-            margin-right: -50vw;
-            width: 100vw;
-            padding: 20px 0;
-            background: #f2f2f2; /* opcional */
-        }
-
-        /* CONTENIDO CENTRADO */
-        .banner-inner {
-            width: 90%;
-            max-width: none;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        /* CUADRO IZQUIERDO */
-        .cuadro-izq {
-            width: 300px;    /* el tamaño que tú quieras */
-            height: 250px;   /* este es el que debe igualar */
-            flex-shrink: 0;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-        .banner-derecho {
-            height: 250px;   /* MISMA ALTURA */
-            width: 115%;
-            max-width: none;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .cuadro-izq img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* BANNER DERECHO */
-        .banner-img-wide {
-            width: 100%;
-            max-height: 300px; /* opcional */
-            object-fit: cover;
-            display: block;
-        }
-
     </style>
 </head>
 
 <body>
 
     <header>
-        <img src="logotipo para empresa de vendas e bolsa ou e-commerce.png" alt="Logo" class="logo">
+        <img src="../logotipo para empresa de vendas e bolsa ou e-commerce.png" alt="Logo" class="logo">
     </header>
 
     <nav>
-        <a href="index.html">Inicio</a>
-        <a href="index.html">Política</a>
-        <a href="index.html">Educación</a>
-        <a href="index.html">Tecnología</a>
-        <a href="index.html">Cultura</a>
+        <a href="../index.html">Inicio</a>
+        <a href="../index.html">Política</a>
+        <a href="../index.html">Deportes</a>
+        <a href="../index.html">Tecnología</a>
+        <a href="../index.html">Videos</a>
     </nav>
 
     <!-- BANNER PUBLICITARIO -->
-    <div class="banner-full2">
-
-    <div class="banner-inner">
-        
-        <!-- Imagen izquierda -->
-        <div class="cuadro-izq">
-            <img src="banner2.png" alt="telecomunicaciones">
+        <div class="banner-container">
+            <a href="https://www.senado.gob.mx/66/">
+            <img src="../banner.jpg" alt="Banner promocional" class="banner-img-wide">
+            </a>
         </div>
 
-        <!-- Banner derecho -->
-        <a href="https://www.senado.gob.mx/66/">
-            <img src="banner.png" alt="Banner promocional" class="banner-derecho">
-        </a>
-
-    </div>
-
-    </div>
 
     <div class="container">
 
-        <!-- BARRA DE BÚSQUEDA -->
-        <input type="text" id="searchInput" placeholder="Buscar noticias..." onkeyup="buscarNoticias()">
-
-        <!-- INICIO DEL APARTADO DE NOTICIAS PRINCIPALES -->
-
-        <!-- Noticia 1 -->
-        <a href="Noticias/noticia1.html" class="preview-btn">
-            <div class="news-card">
-                <img src="Noticias/ImgN1.jpeg" alt="Nuevo1">
-                <h2>La Universidad CESEEO fortalece el respeto a la historia de México.</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
-                <p class="caption">Alumnos del CENDI-PRESCOLAR 21 de Septiembre festejaron el 115 aniversario de la Revolución Mexicana.
-                    Comunicación Social de la Universidad CESEEO. Juchitán Oaxaca.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
-                <span class="ver-mas">Ver más</span>
+        <!-- INFORMACIÓN DEL ARTÍCULO -->
+        <div class="news-card">
+            <h2>La Universidad CESEEO fortalece el respeto a la historia de México.</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+            <img src="ImgN1.jpeg" alt="Imagen1">
+            <p class="caption">Alumnos del CENDI-PRESCOLAR 21 de Septiembre festejaron el 115 aniversario de la Revolución Mexicana.
+                Comunicación Social de la Universidad CESEEO. Juchitán Oaxaca.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+            <div class="news-info">
+                <span class="categoria"><i class="fa-solid fa-list"></i> EDUCACIÓN</span> |  <!-- ESCRIBIR CATEGORÍA -->
+                <span class="fecha"><i class="fa-solid fa-calendar"></i> 23/11/2025</span> |     <!-- ESCRIBIR FECHA DE PUBLICACIÓN -->
+                <span class="hora"><i class="fa-regular fa-clock"></i> 18:30</span> |           <!-- ESCRIBIR HORA DE PUBLICACIÓN -->
+                <span class="autor"><i class="fa-solid fa-user"></i> Jose Luis López López</span>          <!-- ESCRIBIR NOMBRE DEL AUTOR -->
             </div>
-        </a>
-
-        <!-- Noticia 2 -->
-        <a href="Noticias/noticia2.html" class="preview-btn">
-            <div class="news-card">
-                <img src="Noticias/ImgN2.jpeg" alt="Nuevo2">
-                <h2>GOBIERNO JUCHITECO LLEVA PROGRAMA “NO MANCHES, ES TU VIDA” A ESCUELAS PARA DIALOGAR CON ADOLESCENTES SOBRE RIESGOS ACTUALES</h2>
-                <p> Con un diálogo abierto y sin rodeos, el programa municipal de prevención social “No manches, es tu vida” llegó a la Escuela Secundaria Gederal Enedino Jiménez Jiménez para generar conversaciones directas y sinceras con las y los adolescentes sobre las situaciones que enfrentan en su vida diaria. </p>
-                <span class="ver-mas">Ver más</span>
-            </div>
-        </a>
-
-        <!-- Noticia 2 -->
-        <a href="Noticias/noticia3.html" class="preview-btn">
-            <div class="news-card">
-                <img src="Noticias/ImgN3.jpeg" alt="Nuevo3">
-                <h2>34 AÑOS RESCATANDO LA MÚSICA ANCESTRAL</h2>
-                <p> La Música Ancestral es hoy un referente cultural en Juchitán y en toda la región del Istmo. </p>
-                <span class="ver-mas">Ver más</span>
-            </div>
-        </a>
-
-        <!-- Noticia 2 -->
-        <a href="Noticias/noticia4.html" class="preview-btn">
-            <div class="news-card">
-                <img src="Noticias/ImgN4.jpeg" alt="Nuevo4">
-                <h2>Inaugura la presidenta Sheinbaum  el  primer tramo de la línea K del Tren Interoceánico del istmo de Tehuantepec.</h2>
-                <p> Con la presencia de la presidenta Claudia Sheinbaum, este día se puso en marcha el primer tramo del Tren Interoceánico de la línea K. </p>
-                <span class="ver-mas">Ver más</span>
-            </div>
-        </a>
-
-        <div id="pagination"></div>
-        <!-- FIN DEL APARTADO DE NOTICIAS PRINCIPALES -->
-
+            <p>
+                Alumnos del CENDI-PRESCOLAR 21 de Septiembre integrante festejaron el 115 aniversario de la Revolución Mexicana, ante la presencia de padres de familia y amigos quienes se dieron cita en las instalaciones del Colegio 21 de Marzo de los niveles primaria y secundaria.<br>
+                Los alumnos de nivel maternal participaron con sus vestimentas revolucionarias, mientras que los alumnos de preescolar demostraron sus dotes artísticos con bailables y tablas rítmicas.<br>
+                El carisma de los alumnos del CENDI-PRESCOLAR 21 de Septiembre, robó el corazón de los presentes  durante la presentación de sus actividades.
+                Aún estás a tiempo de formar parte de la Gran Familia Educativa CESEEO.<br>
+                El Colegio de Estudios Superiores y de Especialidades del Estado de Oaxaca (CESEEO) te invita a formar parte de nuestra familia a través de todos los niveles educativos que avala la Secretaria de Educación Pública (SEP).<br>
+                Sí Somos UNAM IPN Universidad CESEEO siempre  a la vanguardia en la educación.
+            </p>
+        </div>
     </div>
 
     <!-- INICIO DEL APARTADO DE ANUNCIOS -->
@@ -473,7 +353,7 @@
 
         <!-- NOTICIA 1 -->
         <a href="https://www.bbc.com/mundo/articles/cy5g4rnk0w9o" class="external-horizontal-card" target="_blank">
-            <img src="Noticias externas/NtExternas1.jpg" alt="BBC1">
+            <img src="../Noticias externas/NtExternas1.jpg" alt="BBC1">
             <div class="external-horizontal-info">
                 <h3>"Lo que nos tiene fregados aquí es el aumento del dólar": cómo viven los venezolanos la posibilidad de un ataque de EE.UU.</h3>
             </div>
@@ -481,7 +361,7 @@
 
         <!-- NOTICIA 2 -->
         <a href="https://www.bbc.com/mundo/articles/cn8v80mg9x1o" class="external-horizontal-card" target="_blank">
-            <img src="Noticias externas/NtExternas2.jpg" alt="BBC2">
+            <img src="../Noticias externas/NtExternas2.jpg" alt="BBC2">
             <div class="external-horizontal-info">
                 <h3>La contradicción en el corazón de la burbuja de la IA (y el temor por los efectos económicos de un posible estallido)</h3>
             </div>
@@ -489,7 +369,7 @@
 
         <!-- NOTICIA 3 -->
         <a href="https://www.bbc.com/mundo/articles/czrk7l0n6mmo" class="external-horizontal-card" target="_blank">
-            <img src="Noticias externas/NtExternas3.jpg" alt="BBC3">
+            <img src="../Noticias externas/NtExternas3.jpg" alt="BBC3">
             <div class="external-horizontal-info">
                 <h3>Los congresistas demócratas que instaron a los militares a desobedecer "órdenes ilegales" a quienes Trump acusa de sedición</h3>
             </div>
@@ -522,6 +402,7 @@
 
     </footer>
 
+
     <script>
     function actualizarFechaHora() {
         const ahora = new Date();
@@ -539,21 +420,6 @@
         const fechaHora = ahora.toLocaleDateString('es-ES', opciones);
         document.getElementById("fecha-hora").textContent = fechaHora;
     }
-
-     // Cargar noticias externas desde Netlify
-    fetch("/.netlify/functions/news")
-        .then(res => res.json())
-        .then(data => {
-            const container = document.getElementById("random-news");
-
-            data.forEach(noticia => {
-                container.innerHTML += `
-                    <a class="universal-card" href="${noticia.url}" target="_blank">
-                        <img src="${noticia.img}">
-                        <p>${noticia.titulo}</p>
-                    </a>`;
-            });
-        });
 
     // Actualiza cada segundo
     setInterval(actualizarFechaHora, 1000);
@@ -574,14 +440,11 @@
         }
     });
 }
-
-   
-// Ejecutar al cargar
-mostrarPagina(1);
 </script>
 
 </body>
 </html>
+
 
 
 
