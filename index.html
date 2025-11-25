@@ -322,45 +322,59 @@
             transform: scale(1.2);
         }
 
-        /* AJUSTAR A PANTALLA DEL CELULAR */
+        /* BANNER PUBLICITARIO */
 
-        @media (max-width: 768px) {
-
-        /* Ajustar títulos */
-        h2 {
-            font-size: 20px;
+        .banner-full2 {
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -54.5vw;
+            margin-right: -50vw;
+            width: 100vw;
+            padding: 20px 0;
+            background: #f2f2f2; /* opcional */
         }
 
-        /* Ajustar párrafos */
-        p {
-            font-size: 14px;
-            line-height: 1.4;
+        /* CONTENIDO CENTRADO */
+        .banner-inner {
+            width: 90%;
+            max-width: none;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
-        /* Hacer que tus tarjetas ocupen todo el ancho */
-        .news-card,
-        .external-horizontal-card {
+        /* CUADRO IZQUIERDO */
+        .cuadro-izq {
+            width: 300px;    /* el tamaño que tú quieras */
+            height: 250px;   /* este es el que debe igualar */
+            flex-shrink: 0;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .banner-derecho {
+            height: 250px;   /* MISMA ALTURA */
+            width: 115%;
+            max-width: none;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .cuadro-izq img {
             width: 100%;
-            margin-bottom: 20px;
+            height: 100%;
+            object-fit: cover;
         }
 
-        /* Ajustar imágenes */
-        img {
+        /* BANNER DERECHO */
+        .banner-img-wide {
             width: 100%;
-            height: auto;
+            max-height: 300px; /* opcional */
+            object-fit: cover;
+            display: block;
         }
-
-        /* Ajustar el banner */
-        .banner {
-            height: 120px;
-            background-size: cover;
-        }
-
-        /* Reacomodar tus 3 columnas externas a una sola columna vertical */
-        .external-horizontal-container {
-            flex-direction: column;
-        }
-    }
 
     </style>
 </head>
@@ -380,11 +394,23 @@
     </nav>
 
     <!-- BANNER PUBLICITARIO -->
-        <div class="banner-container">
-            <a href="https://www.senado.gob.mx/66/">
-            <img src="banner.jpg" alt="Banner promocional" class="banner-img-wide">
-            </a>
+    <div class="banner-full2">
+
+    <div class="banner-inner">
+        
+        <!-- Imagen izquierda -->
+        <div class="cuadro-izq">
+            <img src="banner2.png" alt="telecomunicaciones">
         </div>
+
+        <!-- Banner derecho -->
+        <a href="https://www.senado.gob.mx/66/">
+            <img src="banner.png" alt="Banner promocional" class="banner-derecho">
+        </a>
+
+    </div>
+
+    </div>
 
     <div class="container">
 
