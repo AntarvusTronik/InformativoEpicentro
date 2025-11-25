@@ -322,6 +322,46 @@
             transform: scale(1.2);
         }
 
+        /* AJUSTAR A PANTALLA DEL CELULAR */
+
+        @media (max-width: 768px) {
+
+        /* Ajustar títulos */
+        h2 {
+            font-size: 20px;
+        }
+
+        /* Ajustar párrafos */
+        p {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* Hacer que tus tarjetas ocupen todo el ancho */
+        .news-card,
+        .external-horizontal-card {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        /* Ajustar imágenes */
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Ajustar el banner */
+        .banner {
+            height: 120px;
+            background-size: cover;
+        }
+
+        /* Reacomodar tus 3 columnas externas a una sola columna vertical */
+        .external-horizontal-container {
+            flex-direction: column;
+        }
+}
+
     </style>
 </head>
 
@@ -516,6 +556,7 @@ mostrarPagina(1);
 
 </body>
 </html>
+
 
 
 
