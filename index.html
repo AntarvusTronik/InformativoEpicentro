@@ -345,27 +345,45 @@
             gap: 20px;
         }
 
-        /* CUADRO IZQUIERDO */
-        .cuadro-izq {
-            width: 300px;    /* el tamaño que tú quieras */
-            height: 250px;   /* este es el que debe igualar */
-            flex-shrink: 0;
-            overflow: hidden;
-            border-radius: 10px;
-        }
+        /* CONTENEDOR DE LOS DOS BANNERS */
+        .banner-inner {
+                width: 95%;
+                margin: 0 auto;
+                display: flex;
+                align-items: stretch; /* 🔥 misma altura automática */
+                gap: 20px;
+            }
 
-        .banner-derecho {
-            height: 250px;   /* MISMA ALTURA */
-            width: 115%;
-            max-width: none;
-            object-fit: cover;
-            border-radius: 10px;
-        }
+            /* CAJA IZQUIERDA */
+            .cuadro-izq {
+                flex: 0 0 300px; /* ancho fijo */
+                height: 250px;
+                border-radius: 10px;
+                overflow: hidden;
+            }
 
-        .cuadro-izq img {
+            /* IMAGEN IZQUIERDA */
+            .cuadro-izq img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: l20% center;
+            }
+
+            /* CONTENEDOR DERECHO */
+            .banner-der-wrap {
+                flex: 1;              /* ocupa todo el espacio restante */
+                height: 250px;        /* misma altura */
+                border-radius: 10px;
+                overflow: hidden;
+            }   
+
+        /* IMAGEN DERECHA */
+        .banner-der-wrap img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover;    /* llena sin deformarse */
+            display: block;
         }
 
         /* BANNER DERECHO */
@@ -400,12 +418,12 @@
         
         <!-- Imagen izquierda -->
         <div class="cuadro-izq">
-            <img src="NFORMATIVO EPICENTRO_490x434 PX.png" alt="telecomunicaciones">
+            <img src="banner2.jpeg" alt="telecomunicaciones">
         </div>
 
         <!-- Banner derecho -->
-        <a href="https://www.senado.gob.mx/66/">
-            <img src="9921dd7f-72d5-4402-bf48-1b045a370c1d.jpeg" alt="Banner promocional" class="banner-derecho">
+        <a href="https://www.senado.gob.mx/66/" class="banner-der-wrap">
+            <img src="banner.jpeg" alt="Banner promocional">
         </a>
 
     </div>
@@ -582,6 +600,7 @@ mostrarPagina(1);
 
 </body>
 </html>
+
 
 
 
