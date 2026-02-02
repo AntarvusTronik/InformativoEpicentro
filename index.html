@@ -327,8 +327,7 @@
         .banner-full2 {
             position: relative;
             left: 50%;
-            right: 50%;
-            margin-left: -54.5vw;
+            margin-left: -50vw;
             margin-right: -50vw;
             width: 100vw;
             padding: 20px 0;
@@ -337,46 +336,35 @@
 
         /* CONTENIDO CENTRADO */
         .banner-inner {
-            width: 90%;
-            max-width: none;
-            margin: 0 auto;
+            width: 100%;
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            padding: 0 0;          /* pequeño margen interno elegante */
+            box-sizing: border-box;
+            gap: 20px; /* separación entre ambas imagenes */
         }
 
-        /* CONTENEDOR DE LOS DOS BANNERS */
-        .banner-inner {
-                width: 95%;
-                margin: 0 auto;
-                display: flex;
-                align-items: stretch; /* 🔥 misma altura automática */
-                gap: 20px;
-            }
+        /* IMAGEN IZQUIERDA */
+        .cuadro-izq {
+            flex: 1;
+            height: 1 / 1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-            /* CAJA IZQUIERDA */
-            .cuadro-izq {
-                flex: 0 0 300px; /* ancho fijo */
-                height: 250px;
-                border-radius: 10px;
-                overflow: hidden;
-            }
+        .cuadro-izq img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;    /* llena sin deformarse */
+            display: block;
+        }
 
-            /* IMAGEN IZQUIERDA */
-            .cuadro-izq img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: l20% center;
-            }
-
-            /* CONTENEDOR DERECHO */
-            .banner-der-wrap {
-                flex: 1;              /* ocupa todo el espacio restante */
-                height: 250px;        /* misma altura */
-                border-radius: 10px;
-                overflow: hidden;
-            }   
+        /* CONTENEDOR DERECHO */
+        .banner-der-wrap {
+            flex: 1.78;             /* ocupa todo el espacio restante */
+            height: 16 / 9;        /* misma altura */
+            border-radius: 10px;
+            overflow: hidden;
+        }   
 
         /* IMAGEN DERECHA */
         .banner-der-wrap img {
@@ -417,12 +405,12 @@
     <div class="banner-inner">
         
         <!-- Imagen izquierda -->
-        <div class="cuadro-izq">
+        <a href="https://miprimerachamba.oaxaca.gob.mx/" target="_blank" class="cuadro-izq">
             <img src="banner2.jpeg" alt="telecomunicaciones">
-        </div>
+        </a>
 
-        <!-- Banner derecho -->
-        <a href="https://www.senado.gob.mx/66/" class="banner-der-wrap">
+        <!-- Banner derecho (ya estaba bien, solo agregamos target opcional) -->
+        <a href="https://www.oaxaca.gob.mx/salud/" target="_blank" class="banner-der-wrap">
             <img src="banner.jpeg" alt="Banner promocional">
         </a>
 
@@ -600,6 +588,7 @@ mostrarPagina(1);
 
 </body>
 </html>
+
 
 
 
