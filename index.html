@@ -64,6 +64,48 @@
             padding: 20px;
         }
 
+        /* LAYOUT PRINCIPAL CON BANNER IZQUIERDO */
+        .main-layout {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* BANNER VERTICAL IZQUIERDO */
+        .left-banner {
+            width: 320px;
+            flex-shrink: 0;
+        }
+
+        .left-banner img {
+            width: 100%;
+            height: 200%;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+        }
+
+        /* CONTENIDO DE NOTICIAS */
+        .news-content {
+            flex: 1;
+        }
+
+        /* RESPONSIVE PARA CELULARES */
+        @media (max-width: 900px) {
+
+        .main-layout {
+            flex-direction: column;
+        }
+
+        .left-banner {
+            width: 100%;
+        }
+
+        .left-banner img {
+            max-height: 300px;
+        }
+        }
+
         /* TARJETA DE NOTICIA */
         .news-card {
             background: white;
@@ -418,12 +460,34 @@
 
     <div class="container">
 
+    <div class="main-layout">
+
+        <!-- BANNER VERTICAL IZQUIERDO -->
+        <aside class="left-banner">
+            <a href="https://tusitio.com" target="_blank">
+                <img src="Flayer1.jpeg" alt="Publicidad">
+            </a>
+        </aside>
+
+        <!-- CONTENIDO DE NOTICIAS -->
+        <div class="news-content">
+
         <!-- BARRA DE BÚSQUEDA -->
         <input type="text" id="searchInput" placeholder="Buscar noticias..." onkeyup="buscarNoticias()">
 
         <!-- INICIO DEL APARTADO DE NOTICIAS PRINCIPALES -->
 
         <!-- Noticia 1 -->
+        <a href="Noticias/noticia8.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN9.jpeg" alt="Nuevo7">
+                <h2>FESTIVAL DEL RÍO 2026</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">una celebración artística y cultural que reúne música, tradición y convivencia en un ambiente lleno de identidad y orgullo binnizá.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <!-- Noticia 2 -->
         <a href="Noticias/noticia7.html" class="preview-btn">
             <div class="news-card">
                 <img src="Noticias/ImgN7.jpeg" alt="Nuevo7">
@@ -433,7 +497,7 @@
             </div>
         </a>
 
-        <!-- Noticia 2 -->
+        <!-- Noticia 3 -->
         <a href="Noticias/noticia6.html" class="preview-btn">
             <div class="news-card">
                 <img src="Noticias/ImgN6.jpeg" alt="Nuevo6">
@@ -443,7 +507,7 @@
             </div>
         </a>
 
-        <!-- Noticia 3 -->
+        <!-- Noticia 4 -->
         <a href="Noticias/noticia1.html" class="preview-btn">
             <div class="news-card">
                 <img src="Noticias/ImgN1.jpeg" alt="Nuevo1">
@@ -454,7 +518,7 @@
             </div>
         </a>
 
-        <!-- Noticia 4 -->
+        <!-- Noticia 5 -->
         <a href="Noticias/noticia2.html" class="preview-btn">
             <div class="news-card">
                 <img src="Noticias/ImgN2.jpeg" alt="Nuevo2">
@@ -464,7 +528,7 @@
             </div>
         </a>
 
-        <!-- Noticia 5 -->
+        <!-- Noticia 6 -->
         <a href="Noticias/noticia3.html" class="preview-btn">
             <div class="news-card">
                 <img src="Noticias/ImgN3.jpeg" alt="Nuevo3">
@@ -474,7 +538,7 @@
             </div>
         </a>
 
-        <!-- Noticia 6 -->
+        <!-- Noticia 7 -->
         <a href="Noticias/noticia4.html" class="preview-btn">
             <div class="news-card">
                 <img src="Noticias/ImgN4.jpeg" alt="Nuevo4">
@@ -487,6 +551,9 @@
         <div id="pagination"></div>
         <!-- FIN DEL APARTADO DE NOTICIAS PRINCIPALES -->
 
+    </div>
+
+    </div>
     </div>
 
     <!-- INICIO DEL APARTADO DE ANUNCIOS -->
@@ -606,28 +673,6 @@ mostrarPagina(1);
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
