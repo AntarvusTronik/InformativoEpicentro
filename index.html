@@ -5,18 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Noticiero</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome actualizado -->
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
         body {
-            font-family: 'Merriweather', serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             background: #f2f2f2;
             color: #333;
+            zoom: 100%;
         }
 
         .logo {
@@ -24,21 +21,20 @@
             vertical-align: middle;
             margin-right: 15px;
         }
-        
         header {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
         }
 
         /* ENCABEZADO */
         header {
             background: #000000;
             color: #fff;
-            padding: 25px;
+            padding: 4px;
             text-align: center;
-            font-size: 32px;
+            font-size: 20px;
             font-weight: bold;
         }
 
@@ -66,6 +62,48 @@
             max-width: 1100px;
             margin: auto;
             padding: 20px;
+        }
+
+        /* LAYOUT PRINCIPAL CON BANNER IZQUIERDO */
+        .main-layout {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* BANNER VERTICAL IZQUIERDO */
+        .left-banner {
+            width: 320px;
+            flex-shrink: 0;
+        }
+
+        .left-banner img {
+            width: 100%;
+            height: 200%;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+        }
+
+        /* CONTENIDO DE NOTICIAS */
+        .news-content {
+            flex: 1;
+        }
+
+        /* RESPONSIVE PARA CELULARES */
+        @media (max-width: 900px) {
+
+        .main-layout {
+            flex-direction: column;
+        }
+
+        .left-banner {
+            width: 100%;
+        }
+
+        .left-banner img {
+            max-height: 300px;
+        }
         }
 
         /* TARJETA DE NOTICIA */
@@ -104,7 +142,7 @@
         .ad-section {
             display: flex;
             justify-content: center; /* centra horizontalmente los anuncios */
-            gap: 20px; /* espacio entre anuncios */
+            gap: 10px; /* espacio entre anuncios */
             margin: 30px auto;
             max-width: 1100px;
             flex-wrap: wrap; /* hace que se ajusten en móviles */
@@ -121,16 +159,30 @@
         }
 
         /* NOTICIA CLICKEABLE */
-        .news-link {
-            text-decoration: none; /* quita subrayado */
-            color: inherit;        /* mantiene el color original del texto */
-            display: block;        /* importante para que abarque todo el div */
+        .preview-btn {
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
-        .news-link:hover .news-card {
-            box-shadow: 0 0 15px rgba(0,0,0,0.2); /* efecto al pasar el cursor */
-            transform: translateY(-2px);           /* efecto sutil */
-            transition: all 0.3s ease;
+        .preview-btn .news-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .preview-btn:hover .news-card {
+            transform: scale(1.02);
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.25);
+        }
+
+        /* BARRA DE BÚSQUEDA */
+
+        #searchInput {
+            width: 95%;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
         }
 
         /* DISEÑO DE CATEGORÍAS EN ARTÍCULOS */
@@ -148,20 +200,10 @@
             margin-right: 8px;      /* espacio entre los elementos */
         }
 
-        .news-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            font-size: 14px;
-            color: #555;
-            margin: 10px 0;
-        }
-
-
         /* DISEÑO DEL TÍTULO EN EL ARTÍCULO */
         .news-card h2 {
             font-family: 'Impact', serif;
-            font-size: 60px;        /* tamaño del título */
+            font-size: 30px;        /* tamaño del título */
             font-weight: normal;       /* negrita */
             color: #222;             /* color oscuro */
             width: 100%;        /* ocupa todo el ancho del contenedor */
@@ -169,23 +211,6 @@
             margin: 10px 0;          /* separación arriba y abajo */
             word-wrap: break-word;   /* rompe palabras largas */
             overflow-wrap: break-word; 
-        }
-
-        /* ESPACIO ENTRE EL TEXTO DEL ARTÍCULO (NO AFECTA A LA DESCRIPCIÓN BAJO LA IMAGEN) */
-        .news-card p:not(.caption) {
-            font-family: 'Merriweather', serif;
-            font-size: 17px;
-            font-weight: normal;
-            line-height: 1.6;
-        }
-
-        /* DESCRIPCIÓN BAJO LA IMAGEN */
-        .caption {
-            font-size: 10px;
-            color: #555;
-            margin: 5px 0 15px 0;
-            text-align: center;
-            font-style: italic;
         }
 
         /* DISEÑO DEL BANNER */
@@ -212,6 +237,51 @@
             max-height: 300px; /* opcional */
             object-fit: cover;
             display: block;
+        }
+
+        /* Contenedor de la imagen para el degradado */
+        .img-container {
+            position: relative;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Degradado blanco abajo */
+        .img-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9));
+            pointer-events: none;
+        }
+
+        /* Texto “Ver más” */
+        .ver-mas {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 12px;
+            background: #000;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            width: fit-content;
+            transition: background 0.3s ease;
+        }
+
+        /* Efecto hover */
+        .news-card:hover .ver-mas {
+            background: #444;
         }
 
         /* DISEÑO DE LOS ULTMAS NOTICIAS EXTERNAS */
@@ -271,7 +341,6 @@
         /* INFORMACIÓN Y CONTACTOS */
 
         .social-footer {
-            font-family: 'Arial', serif;
             text-align: center;
             padding: 20px;
             background-color: #111;   /* Fondo oscuro */
@@ -299,13 +368,9 @@
         /* BANNER PUBLICITARIO */
 
         .banner-full2 {
-            position: relative;
-            left: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-            width: 100vw;
+            width: 100%;
             padding: 20px 0;
-            background: #f2f2f2; /* opcional */
+            background: #f2f2f2;
         }
 
         /* CONTENIDO CENTRADO */
@@ -363,15 +428,15 @@
 <body>
 
     <header>
-        <img src="../logotipo para empresa de vendas e bolsa ou e-commerce.png" alt="Logo" class="logo">
+        <img src="logotipo para empresa de vendas e bolsa ou e-commerce.png" alt="Logo" class="logo">
     </header>
 
     <nav>
-        <a href="../index.html">Inicio</a>
-        <a href="../index.html">Política</a>
-        <a href="../index.html">Deportes</a>
-        <a href="../index.html">Tecnología</a>
-        <a href="../index.html">Videos</a>
+        <a href="index.html">Inicio</a>
+        <a href="index.html">Política</a>
+        <a href="index.html">Educación</a>
+        <a href="index.html">Tecnología</a>
+        <a href="index.html">Cultura</a>
     </nav>
 
     <!-- BANNER PUBLICITARIO -->
@@ -381,40 +446,114 @@
         
         <!-- Imagen izquierda -->
         <a href="https://miprimerachamba.oaxaca.gob.mx/" target="_blank" class="cuadro-izq">
-            <img src="../banner2.jpeg" alt="telecomunicaciones">
+            <img src="banner2.jpeg" alt="telecomunicaciones">
         </a>
 
         <!-- Banner derecho (ya estaba bien, solo agregamos target opcional) -->
         <a href="https://miprimerachamba.oaxaca.gob.mx/" target="_blank" class="banner-der-wrap">
-            <img src="../banner.jpeg" alt="Banner promocional">
+            <img src="banner.jpeg" alt="Banner promocional">
         </a>
 
     </div>
 
     </div>
 
-
     <div class="container">
 
-        <!-- INFORMACIÓN DEL ARTÍCULO -->
-        <div class="news-card">
-            <h2>ENTREGA MIGUEL QUETU NUEVAS MOTOPATRULLAS PARA REFORZAR RECORRIDOS DE LA POLICÍA MUNICIPAL EN JUCHITÁN</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
-            <img src="ImgN10.jpeg" alt="Imagen1">
-            <p class="caption">Parque Benito Juárez.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
-            <div class="news-info">
-                <span class="categoria"><i class="fa-solid fa-list"></i> POLÍTICA</span> |  <!-- ESCRIBIR CATEGORÍA -->
-                <span class="fecha"><i class="fa-solid fa-calendar"></i> 16/05/2026</span> |     <!-- ESCRIBIR FECHA DE PUBLICACIÓN -->
-                <span class="hora"><i class="fa-regular fa-clock"></i> 21:11</span> |           <!-- ESCRIBIR HORA DE PUBLICACIÓN -->
-                <span class="autor"><i class="fa-solid fa-user"></i> Jose Luis López López</span>          <!-- ESCRIBIR NOMBRE DEL AUTOR -->
+    <div class="main-layout">
+
+        <!-- BANNER VERTICAL IZQUIERDO -->
+        <aside class="left-banner">
+            <a href="https://tusitio.com" target="_blank">
+                <img src="Flayer1.jpeg" alt="Publicidad">
+            </a>
+        </aside>
+
+        <!-- CONTENIDO DE NOTICIAS -->
+        <div class="news-content">
+
+        <!-- BARRA DE BÚSQUEDA -->
+        <input type="text" id="searchInput" placeholder="Buscar noticias..." onkeyup="buscarNoticias()">
+
+        <!-- INICIO DEL APARTADO DE NOTICIAS PRINCIPALES -->
+
+        <!-- Noticia 1 -->
+        <a href="Noticias/noticia9.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN10.jpeg" alt="Nuevo8">
+                <h2>ENTREGA MIGUEL QUETU NUEVAS MOTOPATRULLAS PARA REFORZAR RECORRIDOS DE LA POLICÍA MUNICIPAL EN JUCHITÁN</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">Durante su mensaje, el alcalde juchiteco señaló que estas nuevas unidades permitirán que el Grupo de reacción inmediata de la Policía Municipal tenga mayor presencia en calles y colonias de Juchitán.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
             </div>
-            <p>
-                En un momento donde la presencia preventiva y la coordinación entre corporaciones se ha vuelto fundamental para Juchitán, el presidente Miguel Sánchez Altamirano entregó 15 nuevas motopatrullas para reforzar los recorridos preventivos y la presencia operativa en calles y colonias de la ciudad, 10 destinadas a la Policía Municipal y 5 a elementos de la Policía Vial Municipal, con el propósito de fortalecer las labores de vigilancia y movilidad que ambas corporaciones realizan diariamente en distintos puntos del municipio.<p>
-                Durante su mensaje, el alcalde juchiteco señaló que estas nuevas unidades permitirán que el Grupo de reacción inmediata de la Policía Municipal tenga mayor presencia en calles y colonias de Juchitán, realizando recorridos más constantes y con mayor capacidad de movilidad en distintos puntos de la ciudad. <p>
-                Explicó que esta inversión realizada con recursos municipales forma parte de las acciones que le corresponden al Ayuntamiento para fortalecer las labores preventivas y seguir sumando esfuerzos al trabajo coordinado que actualmente se desarrolla en la ciudad, junto a los gobiernos estatal y federal a través del #PlanJuchitán para la paz, la justicia y el bienestar, impulsado por el gobernador Salomón Jara Cruz.<p>
-                Por su parte, el comisario de Seguridad Pública Municipal, capitán David Vázquez Gualberto, señaló que la consigna de la corporación es trabajar con presencia, cercanía y prevención, manteniendo una policía más visible en distintos puntos de la ciudad y fortaleciendo el contacto directo con las familias juchitecas.<p>
-                En Juchitán, las acciones en materia de seguridad también se están atendiendo desde distintos frentes. Por un lado, el Ayuntamiento mantiene presencia en escuelas a través del programa “No Manches, es tu vida”, donde se dialoga directamente con jóvenes sobre adicciones, violencia, salud emocional y toma de decisiones responsables. Al mismo tiempo, se continúa fortaleciendo a la Policía Municipal con capacitación, nuevas unidades y más equipo para ampliar los patrullajes preventivos y mantener mayor presencia en calles y colonias. A ello se suma la coordinación permanente que el municipio mantiene con corporaciones estatales y federales, entendiendo que la atención a la seguridad requiere trabajo conjunto y acciones constantes desde cada institución.
-            </p>
-        </div>
+        </a>
+
+        <!-- Noticia 2 -->
+        <a href="Noticias/noticia7.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN7.jpeg" alt="Nuevo7">
+                <h2>ARRANCA IEEPO Y GOBIERNO JUCHITECO LA ESTRATEGIA “SEMILLA PARA UN MEJOR FUTURO”</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">La estrategia impulsa conferencias, talleres y actividades culturales para fortalecer la identidad juvenil y orientar su futuro.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <!-- Noticia 3 -->
+        <a href="Noticias/noticia6.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN6.jpeg" alt="Nuevo6">
+                <h2>Denuncian derechohabientes del FOVISSSTE obras inconclusas pese a descuentos salariales en el Istmo.</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">Derechohabientes del Fondo de la Vivienda del ISSSTE (FOVISSSTE) en la región del Istmo de Tehuantepec, denunciaron que a pesar de los descuentos que se les aplican puntualmente en sus salarios por créditos de vivienda, las obras de sus casas permanecen inconclusas, lo que les ha generado la inconformidad.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <!-- Noticia 4 -->
+        <a href="Noticias/noticia1.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN1.jpeg" alt="Nuevo1">
+                <h2>La Universidad CESEEO fortalece el respeto a la historia de México.</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">Alumnos del CENDI-PRESCOLAR 21 de Septiembre festejaron el 115 aniversario de la Revolución Mexicana.
+                    Comunicación Social de la Universidad CESEEO. Juchitán Oaxaca.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <!-- Noticia 5 -->
+        <a href="Noticias/noticia2.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN2.jpeg" alt="Nuevo2">
+                <h2>GOBIERNO JUCHITECO LLEVA PROGRAMA “NO MANCHES, ES TU VIDA” A ESCUELAS PARA DIALOGAR CON ADOLESCENTES SOBRE RIESGOS ACTUALES</h2>
+                <p> Con un diálogo abierto y sin rodeos, el programa municipal de prevención social “No manches, es tu vida” llegó a la Escuela Secundaria Gederal Enedino Jiménez Jiménez para generar conversaciones directas y sinceras con las y los adolescentes sobre las situaciones que enfrentan en su vida diaria. </p>
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <!-- Noticia 6 -->
+        <a href="Noticias/noticia3.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN3.jpeg" alt="Nuevo3">
+                <h2>34 AÑOS RESCATANDO LA MÚSICA ANCESTRAL</h2>
+                <p> La Música Ancestral es hoy un referente cultural en Juchitán y en toda la región del Istmo. </p>
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <!-- Noticia 7 -->
+        <a href="Noticias/noticia4.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN4.jpeg" alt="Nuevo4">
+                <h2>Inaugura la presidenta Sheinbaum  el  primer tramo de la línea K del Tren Interoceánico del istmo de Tehuantepec.</h2>
+                <p> Con la presencia de la presidenta Claudia Sheinbaum, este día se puso en marcha el primer tramo del Tren Interoceánico de la línea K. </p>
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <div id="pagination"></div>
+        <!-- FIN DEL APARTADO DE NOTICIAS PRINCIPALES -->
+
+    </div>
+
+    </div>
     </div>
 
     <!-- INICIO DEL APARTADO DE ANUNCIOS -->
@@ -425,7 +564,7 @@
 
         <!-- NOTICIA 1 -->
         <a href="https://www.bbc.com/mundo/articles/cy5g4rnk0w9o" class="external-horizontal-card" target="_blank">
-            <img src="../Noticias externas/NtExternas1.jpg" alt="BBC1">
+            <img src="Noticias externas/NtExternas1.jpg" alt="BBC1">
             <div class="external-horizontal-info">
                 <h3>"Lo que nos tiene fregados aquí es el aumento del dólar": cómo viven los venezolanos la posibilidad de un ataque de EE.UU.</h3>
             </div>
@@ -433,7 +572,7 @@
 
         <!-- NOTICIA 2 -->
         <a href="https://www.bbc.com/mundo/articles/cn8v80mg9x1o" class="external-horizontal-card" target="_blank">
-            <img src="../Noticias externas/NtExternas2.jpg" alt="BBC2">
+            <img src="Noticias externas/NtExternas2.jpg" alt="BBC2">
             <div class="external-horizontal-info">
                 <h3>La contradicción en el corazón de la burbuja de la IA (y el temor por los efectos económicos de un posible estallido)</h3>
             </div>
@@ -441,7 +580,7 @@
 
         <!-- NOTICIA 3 -->
         <a href="https://www.bbc.com/mundo/articles/czrk7l0n6mmo" class="external-horizontal-card" target="_blank">
-            <img src="../Noticias externas/NtExternas3.jpg" alt="BBC3">
+            <img src="Noticias externas/NtExternas3.jpg" alt="BBC3">
             <div class="external-horizontal-info">
                 <h3>Los congresistas demócratas que instaron a los militares a desobedecer "órdenes ilegales" a quienes Trump acusa de sedición</h3>
             </div>
@@ -474,7 +613,6 @@
 
     </footer>
 
-
     <script>
     function actualizarFechaHora() {
         const ahora = new Date();
@@ -492,6 +630,21 @@
         const fechaHora = ahora.toLocaleDateString('es-ES', opciones);
         document.getElementById("fecha-hora").textContent = fechaHora;
     }
+
+     // Cargar noticias externas desde Netlify
+    fetch("/.netlify/functions/news")
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById("random-news");
+
+            data.forEach(noticia => {
+                container.innerHTML += `
+                    <a class="universal-card" href="${noticia.url}" target="_blank">
+                        <img src="${noticia.img}">
+                        <p>${noticia.titulo}</p>
+                    </a>`;
+            });
+        });
 
     // Actualiza cada segundo
     setInterval(actualizarFechaHora, 1000);
@@ -512,7 +665,14 @@
         }
     });
 }
+
+   
+// Ejecutar al cargar
+mostrarPagina(1);
 </script>
 
 </body>
 </html>
+
+
+
