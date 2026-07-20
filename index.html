@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Noticiero</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f2f2f2;
+            color: #333;
+            zoom: 100%;
+        }
+
+        .logo {
+            height: 140px;
+            vertical-align: middle;
+            margin-right: 15px;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* ENCABEZADO */
+        header {
+            background: #000000;
+            color: #fff;
+            padding: 4px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* MENÚ */
+        nav {
+            background: #333;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 12px;
+        }
+        nav a {
+            font-family: "Impact", sans-serif;
+            color: white;
+            font-size: 22px;
+            text-decoration: none;
+            font-weight: normal;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* CONTENIDO */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* LAYOUT PRINCIPAL CON BANNER IZQUIERDO */
+        .main-layout {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* BANNER VERTICAL IZQUIERDO */
+        .left-banner {
+            width: 320px;
+            flex-shrink: 0;
+        }
+
+        .left-banner img {
+            width: 100%;
+            height: 200%;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+        }
+
+        /* CONTENIDO DE NOTICIAS */
+        .news-content {
+            flex: 1;
+        }
+
+        /* RESPONSIVE PARA CELULARES */
+        @media (max-width: 900px) {
+
+        .main-layout {
+            flex-direction: column;
+        }
+
+        .left-banner {
+            width: 100%;
+        }
+
+        .left-banner img {
+            max-height: 300px;
+        }
+        }
+
+        /* TARJETA DE NOTICIA */
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        }
+        .news-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .news-card h2 {
+            margin-top: 15px;
+        }
+
+        /* PIE DE PÁGINA */
+        footer {
+            background: #000000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            header { font-size: 24px; }
+            nav { flex-wrap: wrap; gap: 10px; }
+        }
+
+        /* ANUNCIOS */
+
+        .ad-section {
+            display: flex;
+            justify-content: center; /* centra horizontalmente los anuncios */
+            gap: 10px; /* espacio entre anuncios */
+            margin: 30px auto;
+            max-width: 1100px;
+            flex-wrap: wrap; /* hace que se ajusten en móviles */
+        }
+
+        .ad {
+            flex: 1; /* cada anuncio ocupa espacio igual */
+            max-width: 300px; /* ancho máximo del anuncio */
+            text-align: center;
+        }
+        .ad img {
+            width: 100%;
+            border-radius: 10px; /* opcional: bordes redondeados */
+        }
+
+        /* NOTICIA CLICKEABLE */
+        .preview-btn {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .preview-btn .news-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .preview-btn:hover .news-card {
+            transform: scale(1.02);
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.25);
+        }
+
+        /* BARRA DE BÚSQUEDA */
+
+        #searchInput {
+            width: 95%;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        /* DISEÑO DE CATEGORÍAS EN ARTÍCULOS */
+        .news-info {
+            font-size: 14px;        /* tamaño más pequeño que el título */
+            color: #555;            /* color gris oscuro */
+            margin: 10px 0;         /* separación arriba y abajo */
+        }
+
+        .news-info .categoria {
+            font-weight: bold;      /* categoría en negrita */
+        }
+
+        .news-info span {
+            margin-right: 8px;      /* espacio entre los elementos */
+        }
+
+        /* DISEÑO DEL TÍTULO EN EL ARTÍCULO */
+        .news-card h2 {
+            font-family: 'Impact', serif;
+            font-size: 30px;        /* tamaño del título */
+            font-weight: normal;       /* negrita */
+            color: #222;             /* color oscuro */
+            width: 100%;        /* ocupa todo el ancho del contenedor */
+            box-sizing: border-box; /* incluye padding en el ancho */
+            margin: 10px 0;          /* separación arriba y abajo */
+            word-wrap: break-word;   /* rompe palabras largas */
+            overflow-wrap: break-word; 
+        }
+
+        /* DISEÑO DEL BANNER */
+
+        .banner-img:hover {
+            transform: scale(1.02);
+            cursor: pointer;
+        }
+
+        .banner-full {
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            width: 100vw; /* 100% del ancho de la pantalla */
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 100px;
+        }
+
+        .banner-img-wide {
+            width: 100%;
+            max-height: 300px; /* opcional */
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Contenedor de la imagen para el degradado */
+        .img-container {
+            position: relative;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Degradado blanco abajo */
+        .img-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9));
+            pointer-events: none;
+        }
+
+        /* Texto “Ver más” */
+        .ver-mas {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 12px;
+            background: #000;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            width: fit-content;
+            transition: background 0.3s ease;
+        }
+
+        /* Efecto hover */
+        .news-card:hover .ver-mas {
+            background: #444;
+        }
+
+        /* DISEÑO DE LOS ULTMAS NOTICIAS EXTERNAS */
+
+        .external-news-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px auto;
+            max-width: 1100px;
+        }
+
+        .external-title {
+            font-family: 'Impact', serif;
+            text-align: center;
+            font-size: 34px;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .external-horizontal-card {
+            width: 30%;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            text-decoration: none;
+            color: black;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .external-horizontal-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .external-horizontal-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .external-horizontal-info {
+            padding: 15px;
+        }
+
+        .external-horizontal-info h3 {
+            margin: 10px 0 5px 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .external-horizontal-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* INFORMACIÓN Y CONTACTOS */
+
+        .social-footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;   /* Fondo oscuro */
+            color: white;
+            margin-top: 40px;
+        }
+
+        .social-footer p {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .social-footer a {
+            margin: 0 10px;
+            color: white;
+            font-size: 15px;     /* Tamaño del ícono */
+            transition: 0.3s;
+        }
+
+        .social-footer a:hover {
+            color: #00aaff;      /* Cambia de color al pasar el mouse */
+            transform: scale(1.2);
+        }
+
+        /* BANNER PUBLICITARIO */
+
+        .banner-full2 {
+            width: 100%;
+            padding: 20px 0;
+            background: #f2f2f2;
+        }
+
+        /* CONTENIDO CENTRADO */
+        .banner-inner {
+            width: 100%;
+            display: flex;
+            padding: 0 0;          /* pequeño margen interno elegante */
+            box-sizing: border-box;
+            gap: 20px; /* separación entre ambas imagenes */
+        }
+
+        /* IMAGEN IZQUIERDA */
+        .cuadro-izq {
+            width: 392pxpx;
+            height: 347px;
+            flex: 0 0 392px; /* evita que se estire o encoja */
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .cuadro-izq img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            background: #000;     /* opcional: relleno si sobran bordes */
+        }
+
+        /* CONTENEDOR DERECHO */
+        .banner-der-wrap {
+            flex: 1;              /* ocupa el resto del espacio */
+            height: 347px;        /* misma altura que el banner izquierdo */
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* IMAGEN DERECHA */
+        .banner-der-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* llena sin deformarse */
+            display: block;
+        }
+
+        /* BANNER DERECHO */
+        .banner-img-wide {
+            width: 100%;
+            max-height: 300px; /* opcional */
+            object-fit: cover;
+            display: block;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="logotipo para empresa de vendas e bolsa ou e-commerce.png" alt="Logo" class="logo">
+    </header>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="index.html">Política</a>
+        <a href="index.html">Educación</a>
+        <a href="index.html">Tecnología</a>
+        <a href="index.html">Cultura</a>
+    </nav>
+
+    <!-- BANNER PUBLICITARIO -->
+    <div class="banner-full2">
+
+    <div class="banner-inner">
+        
+        <!-- Imagen izquierda -->
+        <a href="https://miprimerachamba.oaxaca.gob.mx/" target="_blank" class="cuadro-izq">
+            <img src="banner2.jpeg" alt="telecomunicaciones">
+        </a>
+
+        <!-- Banner derecho (ya estaba bien, solo agregamos target opcional) -->
+        <a href="https://miprimerachamba.oaxaca.gob.mx/" target="_blank" class="banner-der-wrap">
+            <img src="banner.jpeg" alt="Banner promocional">
+        </a>
+
+    </div>
+
+    </div>
+
+    <div class="container">
+
+    <div class="main-layout">
+
+        <!-- BANNER VERTICAL IZQUIERDO -->
+        <aside class="left-banner">
+            <a href="https://tusitio.com" target="_blank">
+                <img src="Flayer1.jpeg" alt="Publicidad">
+            </a>
+        </aside>
+
+        <!-- CONTENIDO DE NOTICIAS -->
+        <div class="news-content">
+
+        <!-- BARRA DE BÚSQUEDA -->
+        <input type="text" id="searchInput" placeholder="Buscar noticias..." onkeyup="buscarNoticias()">
+
+        <!-- INICIO DEL APARTADO DE NOTICIAS PRINCIPALES -->
+
+        <!-- Noticia 1 -->
+
+        <a href="Noticias/noticia20.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN20.jpeg" alt="Nuevo14">
+                <h2>Oaxaca está preparado para vivir la Guelaguetza en un ambiente de paz, orden y tranquilidad</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">En el marco de las festividades de la Guelaguetza, el Gobierno del Estado mantiene las condiciones de gobernabilidad y coordinación necesarias para que las familias oaxaqueñas y quienes visitan la entidad disfruten de nuestra máxima fiesta en un ambiente de paz, orden y tranquilidad.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <a href="Noticias/noticia19.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN19.jpeg" alt="Nuevo13">
+                <h2>"Taxi Gunaa": traslados seguros para mujeres durante la Guelaguetza</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">Santa Lucía del Camino, Oax. 16 de julio de 2026.- La Secretaría de Movilidad (Semovi) dio el banderazo de inicio del programa Traslados Seguros con Taxi Gunaa, estrategia que ofrecerá a las mujeres servicio de transporte durante la Feria del Mezcal.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <a href="Noticias/noticia18.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN18.jpeg" alt="Nuevo12">
+                <h2>El Pueblo que lee "Proyecto independiente de promoción de la Lectura"</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">En una región donde las expresiones culturales forman parte de la vida cotidiana, un proyecto ciudadano ha encontrado en los libros una herramienta para fortalecer el conocimiento, la imaginación y el pensamiento crítico.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <a href="Noticias/noticia17.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN17.jpeg" alt="Nuevo11">
+                <h2>Llegada de segunda carga de vehículos Hyundai, reafirma potencial y éxito de Corredor Interoceánico</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">El traslado de las unidades reafirma el potencial del CIIT para ofrecer soluciones logísticas eficientes y fortalecer las cadenas de suministro nacionales e internacionales.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <a href="Noticias/noticia16.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN16.jpeg" alt="Nuevo10">
+                <h2>Elabora SIPCIA  material sobre el cuerpo humano en zapoteco para unidades médicas</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">El paquete de material didáctico va acompañado de una presentación elaborado por el titular de SIPCIA , donde explica cómo se nombra cada parte de la superficie externa como interna del cuerpo humano.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <a href="Noticias/noticia15.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN15.jpeg" alt="Nuevo9">
+                <h2>TLACOLULA REAFIRMA SU COMPROMISO CON MÉXICO</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">La mañana de este domingo, el Gobernador del Estado, Ing. Salomón Jara Cruz, acudió en la población de Tlacolula de Matamoros, donde, junto con cientos de mujeres y hombres, se llevó a cabo la Asamblea en Defensa de la Soberanía Nacional.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <a href="Noticias/noticia9.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN10.jpeg" alt="Nuevo8">
+                <h2>ENTREGA MIGUEL QUETU NUEVAS MOTOPATRULLAS PARA REFORZAR RECORRIDOS DE LA POLICÍA MUNICIPAL EN JUCHITÁN</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">Durante su mensaje, el alcalde juchiteco señaló que estas nuevas unidades permitirán que el Grupo de reacción inmediata de la Policía Municipal tenga mayor presencia en calles y colonias de Juchitán.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <!-- Noticia 2 -->
+        <a href="Noticias/noticia7.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN7.jpeg" alt="Nuevo7">
+                <h2>ARRANCA IEEPO Y GOBIERNO JUCHITECO LA ESTRATEGIA “SEMILLA PARA UN MEJOR FUTURO”</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">La estrategia impulsa conferencias, talleres y actividades culturales para fortalecer la identidad juvenil y orientar su futuro.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <!-- Noticia 3 -->
+        <a href="Noticias/noticia6.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN6.jpeg" alt="Nuevo6">
+                <h2>Denuncian derechohabientes del FOVISSSTE obras inconclusas pese a descuentos salariales en el Istmo.</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">Derechohabientes del Fondo de la Vivienda del ISSSTE (FOVISSSTE) en la región del Istmo de Tehuantepec, denunciaron que a pesar de los descuentos que se les aplican puntualmente en sus salarios por créditos de vivienda, las obras de sus casas permanecen inconclusas, lo que les ha generado la inconformidad.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <!-- Noticia 4 -->
+        <a href="Noticias/noticia1.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN1.jpeg" alt="Nuevo1">
+                <h2>La Universidad CESEEO fortalece el respeto a la historia de México.</h2> <!-- ESCRIBIR TÍTULO DEL ARTÍCULO -->
+                <p class="caption">Alumnos del CENDI-PRESCOLAR 21 de Septiembre festejaron el 115 aniversario de la Revolución Mexicana.
+                    Comunicación Social de la Universidad CESEEO. Juchitán Oaxaca.</p> <!-- ESCRIBIR DESCRIPCIÓN DE LA IMAGEN -->
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <!-- Noticia 5 -->
+        <a href="Noticias/noticia2.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN2.jpeg" alt="Nuevo2">
+                <h2>GOBIERNO JUCHITECO LLEVA PROGRAMA “NO MANCHES, ES TU VIDA” A ESCUELAS PARA DIALOGAR CON ADOLESCENTES SOBRE RIESGOS ACTUALES</h2>
+                <p> Con un diálogo abierto y sin rodeos, el programa municipal de prevención social “No manches, es tu vida” llegó a la Escuela Secundaria Gederal Enedino Jiménez Jiménez para generar conversaciones directas y sinceras con las y los adolescentes sobre las situaciones que enfrentan en su vida diaria. </p>
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <!-- Noticia 6 -->
+        <a href="Noticias/noticia3.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN3.jpeg" alt="Nuevo3">
+                <h2>34 AÑOS RESCATANDO LA MÚSICA ANCESTRAL</h2>
+                <p> La Música Ancestral es hoy un referente cultural en Juchitán y en toda la región del Istmo. </p>
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <!-- Noticia 7 -->
+        <a href="Noticias/noticia4.html" class="preview-btn">
+            <div class="news-card">
+                <img src="Noticias/ImgN4.jpeg" alt="Nuevo4">
+                <h2>Inaugura la presidenta Sheinbaum  el  primer tramo de la línea K del Tren Interoceánico del istmo de Tehuantepec.</h2>
+                <p> Con la presencia de la presidenta Claudia Sheinbaum, este día se puso en marcha el primer tramo del Tren Interoceánico de la línea K. </p>
+                <span class="ver-mas">Ver más</span>
+            </div>
+        </a>
+
+        <div id="pagination"></div>
+        <!-- FIN DEL APARTADO DE NOTICIAS PRINCIPALES -->
+
+    </div>
+
+    </div>
+    </div>
+
+    <!-- INICIO DEL APARTADO DE ANUNCIOS -->
+    <section class="external-news-horizontal">
+    <h2 class="external-title">Noticias del Mundo</h2>
+
+    <div class="external-news-row">
+
+        <!-- NOTICIA 1 -->
+        <a href="https://www.bbc.com/mundo/articles/cy5g4rnk0w9o" class="external-horizontal-card" target="_blank">
+            <img src="Noticias externas/NtExternas1.jpg" alt="BBC1">
+            <div class="external-horizontal-info">
+                <h3>"Lo que nos tiene fregados aquí es el aumento del dólar": cómo viven los venezolanos la posibilidad de un ataque de EE.UU.</h3>
+            </div>
+        </a>
+
+        <!-- NOTICIA 2 -->
+        <a href="https://www.bbc.com/mundo/articles/cn8v80mg9x1o" class="external-horizontal-card" target="_blank">
+            <img src="Noticias externas/NtExternas2.jpg" alt="BBC2">
+            <div class="external-horizontal-info">
+                <h3>La contradicción en el corazón de la burbuja de la IA (y el temor por los efectos económicos de un posible estallido)</h3>
+            </div>
+        </a>
+
+        <!-- NOTICIA 3 -->
+        <a href="https://www.bbc.com/mundo/articles/czrk7l0n6mmo" class="external-horizontal-card" target="_blank">
+            <img src="Noticias externas/NtExternas3.jpg" alt="BBC3">
+            <div class="external-horizontal-info">
+                <h3>Los congresistas demócratas que instaron a los militares a desobedecer "órdenes ilegales" a quienes Trump acusa de sedición</h3>
+            </div>
+        </a>
+
+    </div>
+    </section>
+    <!-- FIN DEL APARTADO DE ANUNCIOS -->
+
+    <footer class="social-footer">
+        © 2025 Informativo Epicentro — Todos los derechos reservados.
+        <span id="fecha-hora"></span>
+        <p>Síguenos en nuestras redes sociales:</p>
+
+        <a href="https://www.facebook.com/profile.php?id=100064197054490" target="_blank">
+            <i class="fa-brands fa-facebook"></i> Informativo Epicentro
+        </a>
+
+        <a href="https://www.facebook.com/che.hui.5" target="_blank">
+            <i class="fa-brands fa-facebook"></i> Che Hui
+        </a>
+
+        <a href="https://wa.me/529513421072" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i> 9513421072
+        </a>
+
+        <a href="mailto:stubilucha@gmail.com">
+            <i class="fa-solid fa-envelope"></i> stubilucha@gmail.com
+        </a>
+
+    </footer>
+
+    <script>
+    function actualizarFechaHora() {
+        const ahora = new Date();
+
+        const opciones = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        };
+
+        const fechaHora = ahora.toLocaleDateString('es-ES', opciones);
+        document.getElementById("fecha-hora").textContent = fechaHora;
+    }
+
+     // Cargar noticias externas desde Netlify
+    fetch("/.netlify/functions/news")
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById("random-news");
+
+            data.forEach(noticia => {
+                container.innerHTML += `
+                    <a class="universal-card" href="${noticia.url}" target="_blank">
+                        <img src="${noticia.img}">
+                        <p>${noticia.titulo}</p>
+                    </a>`;
+            });
+        });
+
+    // Actualiza cada segundo
+    setInterval(actualizarFechaHora, 1000);
+
+    // Ejecuta al cargar la página
+    actualizarFechaHora();
+
+    function buscarNoticias() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const noticias = document.querySelectorAll('.news-card');
+
+    noticias.forEach(noticia => {
+        const titulo = noticia.querySelector('h2').textContent.toLowerCase();
+        if (titulo.includes(input)) {
+            noticia.style.display = '';
+        } else {
+            noticia.style.display = 'none';
+        }
+    });
+}
+
+   
+// Ejecutar al cargar
+mostrarPagina(1);
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
