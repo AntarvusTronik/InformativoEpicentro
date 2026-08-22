@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-
         /* =========================
            CONFIGURACIÓN GENERAL
         ========================= */
@@ -17,18 +16,17 @@
             box-sizing: border-box;
         }
 
-        html {
+        html, body {
             width: 100%;
+            margin: 0;
+            padding: 0;
             overflow-x: hidden;
         }
 
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             background: #f2f2f2;
             color: #333;
-            overflow-x: hidden;
         }
 
 
@@ -74,7 +72,7 @@
         }
 
         nav a {
-            font-family: Impact, sans-serif;
+            font-family: "Impact", sans-serif;
             color: white;
             font-size: 22px;
             text-decoration: none;
@@ -92,53 +90,42 @@
 
         .banner-full2 {
             width: 100%;
-            padding: 20px 0;
-            background: #f2f2f2;
+            padding: 0;
+            margin: 0;
+            background: transparent;
         }
-
+        
         .banner-inner {
-            width: min(1100px, 94%);
-            margin: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
+            margin: 0;
+            display: block;
         }
 
         .banner-der-wrap {
-            width: 100%;
-            max-width: 1000px;
-
-            /* Mantiene una proporción estable */
-            aspect-ratio: 1000 / 300;
-
             display: block;
-
-            border-radius: 10px;
+            width: 100%;
+            margin: 0;
+            border-radius: 0;
             overflow: hidden;
         }
 
         .banner-der-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
             display: block;
+            width: 100%;
+            height: auto;
         }
 
 
         /* =========================
-           CONTENEDOR PRINCIPAL
+           CONTENIDO
         ========================= */
 
         .container {
-            width: min(1100px, 94%);
+            width: 94%;
+            max-width: 1100px;
             margin: auto;
             padding: 20px 0;
         }
-
-
-        /* =========================
-           LAYOUT PRINCIPAL
-        ========================= */
 
         .main-layout {
             display: flex;
@@ -153,8 +140,8 @@
         ========================= */
 
         .left-banner {
-            width: 300px;
-            flex: 0 0 300px;
+            width: 320px;
+            flex: 0 0 320px;
         }
 
         .left-banner a {
@@ -165,7 +152,6 @@
         .left-banner img {
             width: 100%;
             height: auto;
-            max-height: 600px;
             object-fit: cover;
             border-radius: 10px;
             display: block;
@@ -202,7 +188,7 @@
 
 
         /* =========================
-           TARJETA DE NOTICIA
+           TARJETAS DE NOTICIAS
         ========================= */
 
         .news-card {
@@ -221,12 +207,12 @@
         }
 
         .news-card h2 {
-            font-family: Impact, sans-serif;
+            font-family: "Impact", serif;
             font-size: 30px;
             font-weight: normal;
             color: #222;
             width: 100%;
-            margin: 15px 0 10px 0;
+            margin: 10px 0;
             word-wrap: break-word;
             overflow-wrap: break-word;
             line-height: 1.15;
@@ -248,13 +234,31 @@
         }
 
         .preview-btn .news-card {
-            transition: transform 0.2s ease,
-                        box-shadow 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .preview-btn:hover .news-card {
-            transform: scale(1.01);
+            transform: scale(1.02);
             box-shadow: 0px 4px 12px rgba(0,0,0,0.25);
+        }
+
+
+        /* =========================
+           INFORMACIÓN DE CATEGORÍAS
+        ========================= */
+
+        .news-info {
+            font-size: 14px;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .news-info .categoria {
+            font-weight: bold;
+        }
+
+        .news-info span {
+            margin-right: 8px;
         }
 
 
@@ -282,31 +286,17 @@
 
 
         /* =========================
-           INFORMACIÓN DE NOTICIAS
+           BANNER ANTERIOR
         ========================= */
 
-        .news-info {
-            font-size: 14px;
-            color: #555;
-            margin: 10px 0;
+        .banner-img:hover {
+            transform: scale(1.02);
+            cursor: pointer;
         }
-
-        .news-info .categoria {
-            font-weight: bold;
-        }
-
-        .news-info span {
-            margin-right: 8px;
-        }
-
-
-        /* =========================
-           BANNER FULL
-        ========================= */
 
         .banner-full {
             position: relative;
-            width: 100%;
+            width: 100vw;
             text-align: center;
             margin-top: 20px;
             margin-bottom: 100px;
@@ -343,11 +333,7 @@
             left: 0;
             width: 100%;
             height: 40%;
-            background: linear-gradient(
-                to bottom,
-                transparent,
-                rgba(255,255,255,0.9)
-            );
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9));
             pointer-events: none;
         }
 
@@ -357,12 +343,13 @@
         ========================= */
 
         .external-news-horizontal {
-            width: min(1100px, 94%);
+            width: 94%;
+            max-width: 1100px;
             margin: 40px auto;
         }
 
         .external-title {
-            font-family: Impact, sans-serif;
+            font-family: "Impact", serif;
             text-align: center;
             font-size: 34px;
             margin-bottom: 20px;
@@ -407,7 +394,6 @@
             margin: 10px 0 5px 0;
             font-size: 20px;
             font-weight: bold;
-            line-height: 1.2;
         }
 
         .external-horizontal-info p {
@@ -443,57 +429,53 @@
 
         .social-footer a:hover {
             color: #00aaff;
-            transform: scale(1.1);
+            transform: scale(1.2);
         }
 
 
         /* =========================
-           PAGINACIÓN
+           ANUNCIOS
         ========================= */
 
-        #pagination {
+        .ad-section {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin: 30px 0;
+            gap: 10px;
+            margin: 30px auto;
+            max-width: 1100px;
             flex-wrap: wrap;
         }
 
+        .ad {
+            flex: 1;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .ad img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
 
         /* =========================
-           TABLETS / LAPTOPS PEQUEÑAS
+           RESPONSIVE
         ========================= */
 
         @media (max-width: 1000px) {
 
-            .container {
-                width: 94%;
-            }
-
-            .banner-inner {
-                width: 94%;
-            }
-
             .left-banner {
-                width: 250px;
-                flex: 0 0 250px;
+                width: 270px;
+                flex: 0 0 270px;
             }
 
             .news-card h2 {
-                font-size: 26px;
-            }
-
-            .external-horizontal-info h3 {
-                font-size: 18px;
+                font-size: 27px;
             }
         }
 
 
-        /* =========================
-           PANTALLAS MEDIANAS
-        ========================= */
-
-        @media (max-width: 800px) {
+        @media (max-width: 900px) {
 
             .main-layout {
                 flex-direction: column;
@@ -505,22 +487,12 @@
             }
 
             .left-banner img {
-                width: 100%;
                 max-height: 300px;
-                object-fit: cover;
             }
+        }
 
-            .news-content {
-                width: 100%;
-            }
 
-            .banner-inner {
-                width: 94%;
-            }
-
-            .banner-der-wrap {
-                max-width: 100%;
-            }
+        @media (max-width: 800px) {
 
             .external-news-row {
                 flex-direction: column;
@@ -537,14 +509,10 @@
         }
 
 
-        /* =========================
-           CELULARES
-        ========================= */
-
         @media (max-width: 600px) {
 
             header {
-                padding: 5px;
+                font-size: 24px;
             }
 
             .logo {
@@ -553,8 +521,8 @@
             }
 
             nav {
+                flex-wrap: wrap;
                 gap: 10px;
-                padding: 10px;
             }
 
             nav a {
@@ -569,11 +537,6 @@
                 width: 96%;
             }
 
-            .banner-der-wrap {
-                aspect-ratio: 1000 / 350;
-                border-radius: 8px;
-            }
-
             .container {
                 width: 94%;
                 padding-top: 10px;
@@ -581,7 +544,6 @@
 
             .news-card {
                 padding: 15px;
-                margin-bottom: 20px;
             }
 
             .news-card h2 {
@@ -596,20 +558,12 @@
                 width: 94%;
             }
 
-            .social-footer {
-                padding: 20px 10px;
-            }
-
             .social-footer a {
                 display: block;
                 margin: 10px 0;
             }
         }
 
-
-        /* =========================
-           CELULARES PEQUEÑOS
-        ========================= */
 
         @media (max-width: 400px) {
 
@@ -637,58 +591,31 @@
     </style>
 </head>
 
-
 <body>
 
-
-    <!-- =========================
-         ENCABEZADO
-    ========================= -->
-
     <header>
-
-        <img
-            src="logotipo para empresa de vendas e bolsa ou e-commerce.png"
-            alt="Logo"
-            class="logo"
-        >
-
+        <img src="logotipo para empresa de vendas e bolsa ou e-commerce.png" alt="Logo" class="logo">
     </header>
 
-
-    <!-- =========================
-         MENÚ
-    ========================= -->
-
     <nav>
-
         <a href="index.html">Inicio</a>
         <a href="index.html">Política</a>
         <a href="index.html">Educación</a>
         <a href="index.html">Tecnología</a>
         <a href="index.html">Cultura</a>
-
     </nav>
 
 
-    <!-- =========================
-         BANNER PUBLICITARIO
-    ========================= -->
-
+    <!-- BANNER PUBLICITARIO -->
     <div class="banner-full2">
 
         <div class="banner-inner">
 
-            <a
-                href="https://miprimerachamba.oaxaca.gob.mx/"
-                target="_blank"
-                class="banner-der-wrap"
-            >
+            <a href="https://miprimerachamba.oaxaca.gob.mx/"
+               target="_blank"
+               class="banner-der-wrap">
 
-                <img
-                    src="banner.jpeg"
-                    alt="Banner promocional"
-                >
+                <img src="banner.jpeg" alt="Banner promocional">
 
             </a>
 
@@ -697,74 +624,48 @@
     </div>
 
 
-    <!-- =========================
-         CONTENIDO PRINCIPAL
-    ========================= -->
-
     <div class="container">
 
         <div class="main-layout">
 
-
-            <!-- BANNER VERTICAL -->
-
+            <!-- BANNER VERTICAL IZQUIERDO -->
             <aside class="left-banner">
 
-                <a
-                    href="https://tusitio.com"
-                    target="_blank"
-                >
+                <a href="https://tusitio.com" target="_blank">
 
-                    <img
-                        src="Flayer1.jpeg"
-                        alt="Publicidad"
-                    >
+                    <img src="Flayer1.jpeg" alt="Publicidad">
 
                 </a>
 
             </aside>
 
 
-            <!-- NOTICIAS -->
-
+            <!-- CONTENIDO DE NOTICIAS -->
             <div class="news-content">
 
-
-                <!-- BUSCADOR -->
-
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Buscar noticias..."
-                    onkeyup="buscarNoticias()"
-                >
+                <!-- BARRA DE BÚSQUEDA -->
+                <input type="text"
+                       id="searchInput"
+                       placeholder="Buscar noticias..."
+                       onkeyup="buscarNoticias()">
 
 
-                <!-- =========================
-                     NOTICIAS
-                ========================= -->
-
-
+                <!-- NOTICIA 1 -->
                 <a href="Noticias/noticia22.html" class="preview-btn">
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN22.jpeg"
-                            alt="Nuevo16"
-                        >
+                        <img src="Noticias/ImgN22.jpeg" alt="Nuevo16">
 
                         <h2>
                             El Gobierno Municipal de Ixtepec, a través de la Dirección de Proyectos Municipales, continúa fortaleciendo el programa Ixtepec Productivo
                         </h2>
 
-                        <p>
+                        <p class="caption">
                             Como parte de las actividades del Taller de Herbolaria, hoy las asistentes participaron en una sesión práctica de elaboración de cápsulas medicinales, adquiriendo nuevos conocimientos y habilidades para el aprovechamiento de las plantas medicinales en beneficio de su bienestar y el de sus familias.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
@@ -775,22 +676,17 @@
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN21.jpeg"
-                            alt="Nuevo15"
-                        >
+                        <img src="Noticias/ImgN21.jpeg" alt="Nuevo15">
 
                         <h2>
                             CIERRE PARCIAL DEL VADO DE LA QUINTA SECCIÓN
                         </h2>
 
-                        <p>
+                        <p class="caption">
                             La Coordinación Municipal de Protección Civil Juchitán informa a la ciudadanía en general que, debido a la ejecución de trabajos necesarios de reparación en la estructura, a partir de estos momentos se mantendrá un cierre parcial en el Vado de la Quinta Sección.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
@@ -801,22 +697,17 @@
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN20.jpeg"
-                            alt="Nuevo14"
-                        >
+                        <img src="Noticias/ImgN20.jpeg" alt="Nuevo14">
 
                         <h2>
                             Oaxaca está preparado para vivir la Guelaguetza en un ambiente de paz, orden y tranquilidad
                         </h2>
 
-                        <p>
+                        <p class="caption">
                             En el marco de las festividades de la Guelaguetza, el Gobierno del Estado mantiene las condiciones de gobernabilidad y coordinación necesarias para que las familias oaxaqueñas y quienes visitan la entidad disfruten de nuestra máxima fiesta en un ambiente de paz, orden y tranquilidad.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
@@ -827,22 +718,17 @@
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN19.jpeg"
-                            alt="Nuevo13"
-                        >
+                        <img src="Noticias/ImgN19.jpeg" alt="Nuevo13">
 
                         <h2>
                             "Taxi Gunaa": traslados seguros para mujeres durante la Guelaguetza
                         </h2>
 
-                        <p>
+                        <p class="caption">
                             Santa Lucía del Camino, Oax. 16 de julio de 2026.- La Secretaría de Movilidad (Semovi) dio el banderazo de inicio del programa Traslados Seguros con Taxi Gunaa, estrategia que ofrecerá a las mujeres servicio de transporte durante la Feria del Mezcal.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
@@ -853,22 +739,17 @@
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN18.jpeg"
-                            alt="Nuevo12"
-                        >
+                        <img src="Noticias/ImgN18.jpeg" alt="Nuevo12">
 
                         <h2>
                             El Pueblo que lee "Proyecto independiente de promoción de la Lectura"
                         </h2>
 
-                        <p>
+                        <p class="caption">
                             En una región donde las expresiones culturales forman parte de la vida cotidiana, un proyecto ciudadano ha encontrado en los libros una herramienta para fortalecer el conocimiento, la imaginación y el pensamiento crítico.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
@@ -879,22 +760,17 @@
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN17.jpeg"
-                            alt="Nuevo11"
-                        >
+                        <img src="Noticias/ImgN17.jpeg" alt="Nuevo11">
 
                         <h2>
                             Llegada de segunda carga de vehículos Hyundai, reafirma potencial y éxito de Corredor Interoceánico
                         </h2>
 
-                        <p>
+                        <p class="caption">
                             El traslado de las unidades reafirma el potencial del CIIT para ofrecer soluciones logísticas eficientes y fortalecer las cadenas de suministro nacionales e internacionales.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
@@ -905,22 +781,17 @@
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN16.jpeg"
-                            alt="Nuevo10"
-                        >
+                        <img src="Noticias/ImgN16.jpeg" alt="Nuevo10">
 
                         <h2>
                             Elabora SIPCIA material sobre el cuerpo humano en zapoteco para unidades médicas
                         </h2>
 
-                        <p>
+                        <p class="caption">
                             El paquete de material didáctico va acompañado de una presentación elaborado por el titular de SIPCIA, donde explica cómo se nombra cada parte de la superficie externa como interna del cuerpo humano.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
@@ -931,22 +802,17 @@
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN15.jpeg"
-                            alt="Nuevo9"
-                        >
+                        <img src="Noticias/ImgN15.jpeg" alt="Nuevo9">
 
                         <h2>
                             TLACOLULA REAFIRMA SU COMPROMISO CON MÉXICO
                         </h2>
 
-                        <p>
+                        <p class="caption">
                             La mañana de este domingo, el Gobernador del Estado, Ing. Salomón Jara Cruz, acudió en la población de Tlacolula de Matamoros, donde, junto con cientos de mujeres y hombres, se llevó a cabo la Asamblea en Defensa de la Soberanía Nacional.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
@@ -957,140 +823,118 @@
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN10.jpeg"
-                            alt="Nuevo8"
-                        >
+                        <img src="Noticias/ImgN10.jpeg" alt="Nuevo8">
 
                         <h2>
                             ENTREGA MIGUEL QUETU NUEVAS MOTOPATRULLAS PARA REFORZAR RECORRIDOS DE LA POLICÍA MUNICIPAL EN JUCHITÁN
                         </h2>
 
-                        <p>
+                        <p class="caption">
                             Durante su mensaje, el alcalde juchiteco señaló que estas nuevas unidades permitirán que el Grupo de reacción inmediata de la Policía Municipal tenga mayor presencia en calles y colonias de Juchitán.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
                 </a>
 
 
+                <!-- NOTICIA 2 -->
                 <a href="Noticias/noticia7.html" class="preview-btn">
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN7.jpeg"
-                            alt="Nuevo7"
-                        >
+                        <img src="Noticias/ImgN7.jpeg" alt="Nuevo7">
 
                         <h2>
                             ARRANCA IEEPO Y GOBIERNO JUCHITECO LA ESTRATEGIA “SEMILLA PARA UN MEJOR FUTURO”
                         </h2>
 
-                        <p>
+                        <p class="caption">
                             La estrategia impulsa conferencias, talleres y actividades culturales para fortalecer la identidad juvenil y orientar su futuro.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
                 </a>
 
 
+                <!-- NOTICIA 3 -->
                 <a href="Noticias/noticia6.html" class="preview-btn">
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN6.jpeg"
-                            alt="Nuevo6"
-                        >
+                        <img src="Noticias/ImgN6.jpeg" alt="Nuevo6">
 
                         <h2>
                             Denuncian derechohabientes del FOVISSSTE obras inconclusas pese a descuentos salariales en el Istmo.
                         </h2>
 
-                        <p>
+                        <p class="caption">
                             Derechohabientes del Fondo de la Vivienda del ISSSTE (FOVISSSTE) en la región del Istmo de Tehuantepec, denunciaron que a pesar de los descuentos que se les aplican puntualmente en sus salarios por créditos de vivienda, las obras de sus casas permanecen inconclusas, lo que les ha generado la inconformidad.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
                 </a>
 
 
+                <!-- NOTICIA 4 -->
                 <a href="Noticias/noticia1.html" class="preview-btn">
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN1.jpeg"
-                            alt="Nuevo1"
-                        >
+                        <img src="Noticias/ImgN1.jpeg" alt="Nuevo1">
 
                         <h2>
                             La Universidad CESEEO fortalece el respeto a la historia de México.
                         </h2>
 
-                        <p>
-                            Alumnos del CENDI-PRESCOLAR 21 de Septiembre festejaron el 115 aniversario de la Revolución Mexicana. Comunicación Social de la Universidad CESEEO. Juchitán Oaxaca.
+                        <p class="caption">
+                            Alumnos del CENDI-PRESCOLAR 21 de Septiembre festejaron el 115 aniversario de la Revolución Mexicana.
+                            Comunicación Social de la Universidad CESEEO. Juchitán Oaxaca.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
                 </a>
 
 
+                <!-- NOTICIA 5 -->
                 <a href="Noticias/noticia2.html" class="preview-btn">
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN2.jpeg"
-                            alt="Nuevo2"
-                        >
+                        <img src="Noticias/ImgN2.jpeg" alt="Nuevo2">
 
                         <h2>
                             GOBIERNO JUCHITECO LLEVA PROGRAMA “NO MANCHES, ES TU VIDA” A ESCUELAS PARA DIALOGAR CON ADOLESCENTES SOBRE RIESGOS ACTUALES
                         </h2>
 
                         <p>
-                            Con un diálogo abierto y sin rodeos, el programa municipal de prevención social “No manches, es tu vida” llegó a la Escuela Secundaria General Enedino Jiménez Jiménez para generar conversaciones directas y sinceras con las y los adolescentes sobre las situaciones que enfrentan en su vida diaria.
+                            Con un diálogo abierto y sin rodeos, el programa municipal de prevención social “No manches, es tu vida” llegó a la Escuela Secundaria Gederal Enedino Jiménez Jiménez para generar conversaciones directas y sinceras con las y los adolescentes sobre las situaciones que enfrentan en su vida diaria.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
                 </a>
 
 
+                <!-- NOTICIA 6 -->
                 <a href="Noticias/noticia3.html" class="preview-btn">
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN3.jpeg"
-                            alt="Nuevo3"
-                        >
+                        <img src="Noticias/ImgN3.jpeg" alt="Nuevo3">
 
                         <h2>
                             34 AÑOS RESCATANDO LA MÚSICA ANCESTRAL
@@ -1100,35 +944,29 @@
                             La Música Ancestral es hoy un referente cultural en Juchitán y en toda la región del Istmo.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
                 </a>
 
 
+                <!-- NOTICIA 7 -->
                 <a href="Noticias/noticia4.html" class="preview-btn">
 
                     <div class="news-card">
 
-                        <img
-                            src="Noticias/ImgN4.jpeg"
-                            alt="Nuevo4"
-                        >
+                        <img src="Noticias/ImgN4.jpeg" alt="Nuevo4">
 
                         <h2>
-                            Inaugura la presidenta Sheinbaum el primer tramo de la línea K del Tren Interoceánico del Istmo de Tehuantepec.
+                            Inaugura la presidenta Sheinbaum el primer tramo de la línea K del Tren Interoceánico del istmo de Tehuantepec.
                         </h2>
 
                         <p>
                             Con la presencia de la presidenta Claudia Sheinbaum, este día se puso en marcha el primer tramo del Tren Interoceánico de la línea K.
                         </p>
 
-                        <span class="ver-mas">
-                            Ver más
-                        </span>
+                        <span class="ver-mas">Ver más</span>
 
                     </div>
 
@@ -1154,20 +992,14 @@
             Noticias del Mundo
         </h2>
 
-
         <div class="external-news-row">
 
+            <!-- NOTICIA 1 -->
+            <a href="https://www.bbc.com/mundo/articles/cy5g4rnk0w9o"
+               class="external-horizontal-card"
+               target="_blank">
 
-            <a
-                href="https://www.bbc.com/mundo/articles/cy5g4rnk0w9o"
-                class="external-horizontal-card"
-                target="_blank"
-            >
-
-                <img
-                    src="Noticias externas/NtExternas1.jpg"
-                    alt="BBC1"
-                >
+                <img src="Noticias externas/NtExternas1.jpg" alt="BBC1">
 
                 <div class="external-horizontal-info">
 
@@ -1180,16 +1012,12 @@
             </a>
 
 
-            <a
-                href="https://www.bbc.com/mundo/articles/cn8v80mg9x1o"
-                class="external-horizontal-card"
-                target="_blank"
-            >
+            <!-- NOTICIA 2 -->
+            <a href="https://www.bbc.com/mundo/articles/cn8v80mg9x1o"
+               class="external-horizontal-card"
+               target="_blank">
 
-                <img
-                    src="Noticias externas/NtExternas2.jpg"
-                    alt="BBC2"
-                >
+                <img src="Noticias externas/NtExternas2.jpg" alt="BBC2">
 
                 <div class="external-horizontal-info">
 
@@ -1202,16 +1030,12 @@
             </a>
 
 
-            <a
-                href="https://www.bbc.com/mundo/articles/czrk7l0n6mmo"
-                class="external-horizontal-card"
-                target="_blank"
-            >
+            <!-- NOTICIA 3 -->
+            <a href="https://www.bbc.com/mundo/articles/czrk7l0n6mmo"
+               class="external-horizontal-card"
+               target="_blank">
 
-                <img
-                    src="Noticias externas/NtExternas3.jpg"
-                    alt="BBC3"
-                >
+                <img src="Noticias externas/NtExternas3.jpg" alt="BBC3">
 
                 <div class="external-horizontal-info">
 
@@ -1222,7 +1046,6 @@
                 </div>
 
             </a>
-
 
         </div>
 
@@ -1235,21 +1058,17 @@
 
     <footer class="social-footer">
 
-        © 2025 Informativo Epicentro —
-        Todos los derechos reservados.
+        © 2025 Informativo Epicentro — Todos los derechos reservados.
 
         <span id="fecha-hora"></span>
-
 
         <p>
             Síguenos en nuestras redes sociales:
         </p>
 
 
-        <a
-            href="https://www.facebook.com/profile.php?id=100064197054490"
-            target="_blank"
-        >
+        <a href="https://www.facebook.com/profile.php?id=100064197054490"
+           target="_blank">
 
             <i class="fa-brands fa-facebook"></i>
             Informativo Epicentro
@@ -1257,10 +1076,8 @@
         </a>
 
 
-        <a
-            href="https://www.facebook.com/che.hui.5"
-            target="_blank"
-        >
+        <a href="https://www.facebook.com/che.hui.5"
+           target="_blank">
 
             <i class="fa-brands fa-facebook"></i>
             Che Hui
@@ -1268,10 +1085,8 @@
         </a>
 
 
-        <a
-            href="https://wa.me/529513421072"
-            target="_blank"
-        >
+        <a href="https://wa.me/529513421072"
+           target="_blank">
 
             <i class="fa-brands fa-whatsapp"></i>
             9513421072
@@ -1279,9 +1094,7 @@
         </a>
 
 
-        <a
-            href="mailto:stubilucha@gmail.com"
-        >
+        <a href="mailto:stubilucha@gmail.com">
 
             <i class="fa-solid fa-envelope"></i>
             stubilucha@gmail.com
@@ -1296,10 +1109,6 @@
     ========================= -->
 
     <script>
-
-        /* =========================
-           FECHA Y HORA
-        ========================= */
 
         function actualizarFechaHora() {
 
@@ -1318,14 +1127,9 @@
             const fechaHora =
                 ahora.toLocaleDateString('es-ES', opciones);
 
-            document.getElementById("fecha-hora")
-                .textContent = fechaHora;
+            document.getElementById("fecha-hora").textContent = fechaHora;
         }
 
-
-        /* =========================
-           BUSCADOR
-        ========================= */
 
         function buscarNoticias() {
 
@@ -1335,7 +1139,7 @@
                 .toLowerCase();
 
             const noticias =
-                document.querySelectorAll('.preview-btn');
+                document.querySelectorAll('.news-card');
 
             noticias.forEach(noticia => {
 
@@ -1355,14 +1159,10 @@
                 }
 
             });
-
         }
 
 
-        /* =========================
-           NOTICIAS EXTERNAS
-        ========================= */
-
+        // Cargar noticias externas desde Netlify
         fetch("/.netlify/functions/news")
             .then(res => res.json())
             .then(data => {
@@ -1375,28 +1175,17 @@
                 data.forEach(noticia => {
 
                     container.innerHTML += `
+                        <a class="universal-card"
+                           href="${noticia.url}"
+                           target="_blank">
 
-                        <a
-                            class="universal-card"
-                            href="${noticia.url}"
-                            target="_blank"
-                        >
+                            <img src="${noticia.img}" alt="">
 
-                            <img
-                                src="${noticia.img}"
-                                alt=""
-                            >
-
-                            <p>
-                                ${noticia.titulo}
-                            </p>
+                            <p>${noticia.titulo}</p>
 
                         </a>
-
                     `;
-
                 });
-
             })
             .catch(error => {
 
@@ -1407,10 +1196,6 @@
 
             });
 
-
-        /* =========================
-           INICIAR RELOJ
-        ========================= */
 
         actualizarFechaHora();
 
